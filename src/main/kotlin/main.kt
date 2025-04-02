@@ -26,11 +26,17 @@ object WallService {
 
     fun update(post: Post): Boolean {
         for ((index, postEl) in posts.withIndex()) {
-            if (post.id == postEl.id)
+            if (post.id == postEl.id) {
                 posts[index] = post
-            return true
+                return true
+            }
         }
         return false
+    }
+
+    fun clear() {
+        posts = emptyArray()
+        lastPostId = 1
     }
 }
 
@@ -38,6 +44,7 @@ fun main() {
     val comment = Comments(10, 2, 0, "First Comment")
     val postOne = Post(5, 1, "Vladimir", 0, "First post", comment, 5, 5, true, 5)
     val postTwo = postOne.copy(id = 10, text = "Second post", likes = postOne.likes + 1)
+    val postThree = postOne.copy(id = 20, text = "Second post", likes = postOne.likes + 1)
 
     //show default data
     println(postOne)
@@ -47,11 +54,9 @@ fun main() {
     println(WallService.add(postOne))
     val postForEdit = WallService.add(postTwo)
 
-    //try to update
-    println(WallService.update(postForEdit.copy(likes = postForEdit.likes + 5)))
+    //try to update - ok
+    println(WallService.update(postForEdit.copy(text = "Second post edited")))
 
-    //show result
-    println(postForEdit)
-
-
+    //try to update - false
+    println(WallService.update(postThree.copy(text = "Second post edited")))
 }
