@@ -4,11 +4,12 @@ data class Post(
     val authorName: String,
     val date: Int,
     val text: String,
-    val comments: Comments,
+    val comments: Comments? = null, // можем по умолчанию ноль? можем ;)
     val likes: Int = 0,
     val views: Int,
     val canEdit: Boolean,
-    val reposts: Int = 0
+    val reposts: Int = 0,
+    val original: Post? = null
 )
 
 class Comments(var count: Int, var authorId: Int, var date: Int, var text: String)
@@ -42,8 +43,8 @@ object WallService {
 
 fun main() {
     val comment = Comments(10, 2, 0, "First Comment")
-    val postOne = Post(5, 1, "Vladimir", 0, "First post", comment, 5, 5, true, 5)
-    val postTwo = postOne.copy(id = 10, text = "Second post", likes = postOne.likes + 1)
+    val postOne = Post(5, 1, "Vladimir", 0, "First post", comment, 5, 5, true, 5, null)
+    val postTwo = postOne.copy(id = 10, comments = null, text = "Second post", likes = postOne.likes + 1)
     val postThree = postOne.copy(id = 20, text = "Second post", likes = postOne.likes + 1)
 
     //show default data
