@@ -1,3 +1,4 @@
+package ru.netology;
 
 import junit.framework.TestCase.assertEquals
 import org.junit.Assert.assertFalse
@@ -16,7 +17,7 @@ class WallServiceTest {
     fun TestAdd() {
         val service = WallService
         //val comment = Comments(10, 2, 0, "First Comment")
-        val result = service.add(Post(5, 1, "Vladimir", 0, "First post", null, 5, 5, true, 5, null))
+        val result = service.add(Post(5, 1, "Vladimir", 0, "First post", null, 5, 5, true, 5, emptyArray()))
 
         assertEquals(1, result.id)
     }
@@ -26,12 +27,12 @@ class WallServiceTest {
         val service = WallService
         val comment = Comments(10, 2, 0, "First Comment")
         // заполняем несколькими постами
-        service.add(Post(5, 1, "Vladimir", 0, "First post", comment, 5, 5, true, 5, null))
-        service.add(Post(15, 1, "Vladimir", 0, "Second post", null, 5, 5, true, 15, null))
-        service.add(Post(25, 1, "Vladimir", 0, "Third post", comment, 5, 5, true, 25, null))
+        service.add(Post(5, 1, "Vladimir", 0, "First post", comment, 5, 5, true, 5, emptyArray()))
+        service.add(Post(15, 1, "Vladimir", 0, "Second post", null, 5, 5, true, 15, emptyArray()))
+        service.add(Post(25, 1, "Vladimir", 0, "Third post", comment, 5, 5, true, 25, emptyArray()))
 
         // создаём информацию об обновлении
-        val update = Post(3, 1, "Vladimir", 0, "Third post", comment, 5, 5, true, 35, null)
+        val update = Post(3, 1, "Vladimir", 0, "Third post", comment, 5, 5, true, 35, emptyArray())
 
         // выполняем целевое действие
         val result = service.update(update)
@@ -45,9 +46,9 @@ class WallServiceTest {
         val service = WallService
         val comment = Comments(10, 2, 0, "First Comment")
         // заполняем несколькими постами
-        service.add(Post(5, 1, "Vladimir", 0, "First post", comment, 5, 5, true, 5))
-        service.add(Post(15, 1, "Vladimir", 0, "Second post", comment, 5, 5, true, 15))
-        service.add(Post(25, 1, "Vladimir", 0, "Third post", comment, 5, 5, true, 25))
+        service.add(Post(5, 1, "Vladimir", 0, "First post", comment, 5, 5, true, 5, emptyArray(),))
+        service.add(Post(15, 1, "Vladimir", 0, "Second post", comment, 5, 5, true, 15, emptyArray(),))
+        service.add(Post(25, 1, "Vladimir", 0, "Third post", comment, 5, 5, true, 25, emptyArray(),))
         // создаём информацию об обновлении
         val update = Post(45, 1, "Vladimir", 0, "Third post", comment, 5, 5, true, 25)
 

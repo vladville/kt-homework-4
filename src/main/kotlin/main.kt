@@ -1,3 +1,5 @@
+package ru.netology;
+
 data class Post(
     val id: Int,
     val authorId: Int,
@@ -9,6 +11,7 @@ data class Post(
     val views: Int,
     val canEdit: Boolean,
     val reposts: Int = 0,
+    val attachments: Array<Attachment> = emptyArray(),
     val original: Post? = null
 )
 
@@ -43,7 +46,7 @@ object WallService {
 
 fun main() {
     val comment = Comments(10, 2, 0, "First Comment")
-    val postOne = Post(5, 1, "Vladimir", 0, "First post", comment, 5, 5, true, 5, null)
+    val postOne = Post(5, 1, "Vladimir", 0, "First post", comment, 5, 5, true, 5, emptyArray())
     val postTwo = postOne.copy(id = 10, comments = null, text = "Second post", likes = postOne.likes + 1)
     val postThree = postOne.copy(id = 20, text = "Second post", likes = postOne.likes + 1)
 
